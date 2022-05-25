@@ -67,7 +67,7 @@ void task1() {
   }
 }
 
-void task2int() {
+template <typename T>  void task2() {
   int type = 0;
   std::cout << "1 - create set" << std::endl
             << "2 - add to set" << std::endl
@@ -75,37 +75,37 @@ void task2int() {
             << "4 - clone sets" << std::endl
             << "5 - cross sets" << std::endl
             << "6 - print set" << std::endl;
-  Set<int> *prev = NULL;
-  Set<int> *cur = NULL;
-  Set<int> *tmp = NULL;
+  Set<T> *prev = NULL;
+  Set<T> *cur = NULL;
+  Set<T> *tmp = NULL;
   while (true) {
     std::cout << "> ";
     std::cin >> type;
     if (type == 1) {
       if (cur == NULL) {
-        cur = new Set<int>();
+        cur = new Set<T>();
       } else {
         prev = cur;
-        cur = new Set<int>();
+        cur = new Set<T>();
       }
     }
     if (type == 2) {
       if (!cur)
-        cur = new Set<int>();
-      int in = 0;
+        cur = new Set<T>();
+      T in = 0;
       std::cin >> in;
       cur->add(in);
     }
     if (type == 3) {
       if (cur && prev) {
         if (cur->size() > 0 && prev->size() > 0) {
-          Set<int> res = *cur + *prev;
-          tmp = new Set<int>(res.clone());
+          Set<T> res = *cur + *prev;
+          tmp = new Set<T>(res.clone());
           prev = cur;
           cur = tmp;
         }
         if (cur->size() <= 0 && prev->size() > 0) {
-          Set<int> *swp = prev;
+          Set<T> *swp = prev;
           prev = cur;
           cur = swp;
         }
@@ -113,21 +113,21 @@ void task2int() {
     }
     if (type == 4) {
       if (cur) {
-        tmp = new Set<int>(cur->clone());
+        tmp = new Set<T>(cur->clone());
         prev = tmp;
       }
     }
     if (type == 5) {
       if (cur && prev) {
         if (cur->size() > 0 && prev->size() > 0) {
-          Set<int> res = *cur * *prev;
-          tmp = new Set<int>(res.clone());
+          Set<T> res = *cur * *prev;
+          tmp = new Set<T>(res.clone());
           prev = cur;
           cur = tmp;
           continue;
         }
         prev = cur;
-        cur = new Set<int>();
+        cur = new Set<T>();
       }
     }
     if (type == 6) {
@@ -139,221 +139,7 @@ void task2int() {
   }
 }
 
-void task2float() {
-  int type = 0;
-  std::cout << "1 - create set" << std::endl
-            << "2 - add to set" << std::endl
-            << "3 - sum sets" << std::endl
-            << "4 - clone sets" << std::endl
-            << "5 - cross sets" << std::endl
-            << "6 - print set" << std::endl;
-  Set<float> *prev = NULL;
-  Set<float> *cur = NULL;
-  Set<float> *tmp = NULL;
-  while (true) {
-    std::cout << "> ";
-    std::cin >> type;
-    if (type == 1) {
-      if (cur == NULL) {
-        cur = new Set<float>();
-      } else {
-        prev = cur;
-        cur = new Set<float>();
-      }
-    }
-    if (type == 2) {
-      if (!cur)
-        cur = new Set<float>();
-      float in = 0;
-      std::cin >> in;
-      cur->add(in);
-    }
-    if (type == 3) {
-      if (cur && prev) {
-        if (cur->size() > 0 && prev->size() > 0) {
-          Set<float> res = *cur + *prev;
-          tmp = new Set<float>(res.clone());
-          prev = cur;
-          cur = tmp;
-        }
-        if (cur->size() <= 0 && prev->size() > 0) {
-          Set<float> *swp = prev;
-          prev = cur;
-          cur = swp;
-        }
-      }
-    }
-    if (type == 4) {
-      if (cur) {
-        tmp = new Set<float>(cur->clone());
-        prev = tmp;
-      }
-    }
-    if (type == 5) {
-      if (cur && prev) {
-        if (cur->size() > 0 && prev->size() > 0) {
-          Set<float> res = *cur * *prev;
-          tmp = new Set<float>(res.clone());
-          prev = cur;
-          cur = tmp;
-          continue;
-        }
-        prev = cur;
-        cur = new Set<float>();
-      }
-    }
-    if (type == 6) {
-      if (cur) {
-        std::cout << "Result:" << std::endl;
-        cur->show();
-      }
-    }
-  }
-}
 
-void task2double() {
-  int type = 0;
-  std::cout << "1 - create set" << std::endl
-            << "2 - add to set" << std::endl
-            << "3 - sum sets" << std::endl
-            << "4 - clone sets" << std::endl
-            << "5 - cross sets" << std::endl
-            << "6 - print set" << std::endl;
-  Set<double> *prev = NULL;
-  Set<double> *cur = NULL;
-  Set<double> *tmp = NULL;
-  while (true) {
-    std::cout << "> ";
-    std::cin >> type;
-    if (type == 1) {
-      if (cur == NULL) {
-        cur = new Set<double>();
-      } else {
-        prev = cur;
-        cur = new Set<double>();
-      }
-    }
-    if (type == 2) {
-      if (!cur)
-        cur = new Set<double>();
-      double in = 0;
-      std::cin >> in;
-      cur->add(in);
-    }
-    if (type == 3) {
-      if (cur && prev) {
-        if (cur->size() > 0 && prev->size() > 0) {
-          Set<double> res = *cur + *prev;
-          tmp = new Set<double>(res.clone());
-          prev = cur;
-          cur = tmp;
-        }
-        if (cur->size() <= 0 && prev->size() > 0) {
-          Set<double> *swp = prev;
-          prev = cur;
-          cur = swp;
-        }
-      }
-    }
-    if (type == 4) {
-      if (cur) {
-        tmp = new Set<double>(cur->clone());
-        prev = tmp;
-      }
-    }
-    if (type == 5) {
-      if (cur && prev) {
-        if (cur->size() > 0 && prev->size() > 0) {
-          Set<double> res = *cur * *prev;
-          tmp = new Set<double>(res.clone());
-          prev = cur;
-          cur = tmp;
-          continue;
-        }
-        prev = cur;
-        cur = new Set<double>();
-      }
-    }
-    if (type == 6) {
-      if (cur) {
-        std::cout << "Result:" << std::endl;
-        cur->show();
-      }
-    }
-  }
-}
-
-void task2char() {
-  int type = 0;
-  std::cout << "1 - create set" << std::endl
-            << "2 - add to set" << std::endl
-            << "3 - sum sets" << std::endl
-            << "4 - clone sets" << std::endl
-            << "5 - cross sets" << std::endl
-            << "6 - print set" << std::endl;
-  Set<char> *prev = NULL;
-  Set<char> *cur = NULL;
-  Set<char> *tmp = NULL;
-  while (true) {
-    std::cout << "> ";
-    std::cin >> type;
-    if (type == 1) {
-      if (cur == NULL) {
-        cur = new Set<char>();
-      } else {
-        prev = cur;
-        cur = new Set<char>();
-      }
-    }
-    if (type == 2) {
-      if (!cur)
-        cur = new Set<char>();
-      char in = 0;
-      std::cin >> in;
-      cur->add(in);
-    }
-    if (type == 3) {
-      if (cur && prev) {
-        if (cur->size() > 0 && prev->size() > 0) {
-          Set<char> res = *cur + *prev;
-          tmp = new Set<char>(res.clone());
-          prev = cur;
-          cur = tmp;
-        }
-        if (cur->size() <= 0 && prev->size() > 0) {
-          Set<char> *swp = prev;
-          prev = cur;
-          cur = swp;
-        }
-      }
-    }
-    if (type == 4) {
-      if (cur) {
-        tmp = new Set<char>(cur->clone());
-        prev = tmp;
-      }
-    }
-    if (type == 5) {
-      if (cur && prev) {
-        if (cur->size() > 0 && prev->size() > 0) {
-          Set<char> res = *cur * *prev;
-          tmp = new Set<char>(res.clone());
-          prev = cur;
-          cur = tmp;
-          continue;
-        }
-        prev = cur;
-        cur = new Set<char>();
-      }
-    }
-    if (type == 6) {
-      if (cur) {
-        std::cout << "Result:" << std::endl;
-        cur->show();
-      }
-    }
-  }
-}
 
 void task2() {
   int type = 0;
@@ -364,13 +150,13 @@ void task2() {
   std::cin >> type;
   switch (type) {
   case 1:
-    task2int();
+    task2<int>();
   case 2:
-    task2float();
+    task2<float>();
   case 3:
-    task2double();
+    task2<double>();
   case 4:
-    task2char();
+    task2<char>();
   }
 }
 
